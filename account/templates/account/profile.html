@@ -1,0 +1,31 @@
+{%extends 'base.html'%}
+{%load crispy_forms_tags%}
+{%block content%}
+
+<div class="container">
+	<div class="row">
+		<div class="col-sm-3">
+			{%if user.profile.photo%}
+			<img src="{{user.profile.photo.url}}" style="width: 80%; height: 40%; border-radius: 50%;">
+			<hr>
+			<a class="btn btn-info" href="{%url 'password_reset'%}">Reset Password</a>
+			{%else%}
+
+			{%endif%}
+		</div>
+		<div class="col-sm-7">
+			<form method="POST" enctype="multipart/form-data">
+				{%csrf_token%}
+				{{user_form|crispy}}
+				{{profile_form|crispy}}
+				<input class="btn btn-info" type="submit" value="Update Profile">
+			</form>
+		</div>
+		<div class="col-sm-3">
+			
+		</div>
+	</div>
+	
+</div>
+
+{%endblock%}

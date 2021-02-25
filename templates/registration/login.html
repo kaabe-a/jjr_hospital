@@ -1,0 +1,28 @@
+{%extends 'base.html'%}
+{%load crispy_forms_tags%}
+{%block content%}
+<div class="container mt-5">
+	<div class="row">
+		<div class="col-sm-4">
+			
+		</div>
+		<div class="col-sm-6">
+			<form method="POST">
+				{%csrf_token%}
+				{{form|crispy}}
+				<input type="hidden" name="next" value="{{next}}"/>
+				<input class='btn btn-info' type="submit" value="login">
+			</form>
+			<br>
+			If you are not a member please <a href="{%url 'register'%}">register</a> here.
+		
+
+			
+		</div>
+		<div class="col-sm-4">
+			
+		</div>
+	</div>
+	
+</div>
+{%endblock%}

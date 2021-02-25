@@ -1,0 +1,1 @@
+web: gunicorn jjr_hospital.wsgi
