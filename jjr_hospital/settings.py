@@ -25,7 +25,7 @@ SECRET_KEY = '++hr7su(vg)q(yf%=afe+i!12h0ap2j+)7yof@#^^e!df0^uqa'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['127.0.0.1','jjrh.herokuapp.com']
 
 
 # Application definition
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'account',
+    'hospital',
 
     'crispy_forms',
 ]
@@ -73,7 +74,7 @@ TEMPLATES = [
     },
 ]
 
-LOGIN_REDIRECT_URL = ''
+LOGIN_REDIRECT_URL = 'dashboard'
 
 WSGI_APPLICATION = 'jjr_hospital.wsgi.application'
 

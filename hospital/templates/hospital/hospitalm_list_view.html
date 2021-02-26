@@ -1,0 +1,26 @@
+{%extends 'base.html'%}
+{%block content%}
+	<div class="table-responsive-lg">
+  <table class="table">
+   	<thead>
+		<tr>
+			<th>Unit name</th>
+			<th>All beds</th>
+			<th>Occouped beds</th>
+			<th>Impeding beds</th>
+			<th>Free beds</th>
+		</tr>
+	</thead>
+	 <tbody>
+		{%for hospital in hospitals%}
+		<tr>
+			<td>{{hospital.Unitname}}</td>
+			<td>{{hospital.Allbeds}}</td>
+			<td>{{hospital.Occupiedbeds}}</td>
+			<td>{{hospital.Impedingbeds}}</td>
+			<td>{{hospital.freebeds}}</td>
+		</tr>
+		{%endfor%}
+		 </tbody>
+	</table>
+{%endblock%}

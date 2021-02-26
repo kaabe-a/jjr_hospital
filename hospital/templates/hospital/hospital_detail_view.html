@@ -1,0 +1,45 @@
+{%extends 'base.html'%}
+{%block content%}
+<div class="table-responsive-lg">
+  			<table class="table">
+   			<thead>
+		<tr>
+			<th>Unit name</th>
+			<th>All beds</th>
+			<th>Occouped beds</th>
+			<th>Impeding beds</th>
+			<th>Free beds</th>
+			{%if request.user.is_staff and request.user.is_superuser%}
+			<th>Delete</th>
+			<th>Update</th>
+			<th>View</th>
+			{%elif request.user.is_staff%}
+			<th>Update</th>
+			<th>View</th>
+			{%else%}
+			<th>View</th>
+			{%endif%}
+		</tr>
+	</thead>
+	 <tbody>
+		<tr>
+			<td>{{hospital.Unitname}}</td>
+			<td>{{hospital.Allbeds}}</td>
+			<td>{{hospital.Occupiedbeds}}</td>
+			<td>{{hospital.Impedingbeds}}</td>
+			<td>{{hospital.freebeds}}</td>
+			{%if request.user.is_superuser%}
+			<td><a href="{%url 'delete' hospital.id %}">Delete</a></td>
+			<td><a href="{%url 'update' hospital.id %}">Update</a></td>
+			<td><a href="{%url 'detail' hospital.id %}">View</a></td>
+			{%elif request.user.is_staff%}
+			<td><a href="{%url 'update' hospital.id %}">Update</a></td>
+			<td><a href="{%url 'detail' hospital.id %}">View</a></td>
+			{%else%}
+			<td><a href="{%url 'detail' hospital.id %}">View</a></td>
+			{%endif%}
+		</tr>
+		 </tbody>
+	</table>
+	</div>
+{%endblock%}

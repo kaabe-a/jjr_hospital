@@ -3,13 +3,29 @@ from django.http import HttpResponse
 from django.contrib.auth import login as auth_login,authenticate, logout as auth_logout
 from . forms import UserRegistrationForm,UserEditForm,ProfileEditForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import user_passes_test
 from django.contrib import messages
 from django.contrib.auth.models import User
 from .models import Profile
+from hospital.models import HospitalM
 
-#dashboard
-#user
+@login_required(login_url='login')
+def dashboard(request):
+	if request.user.is_superuser:
+		hospitals = HospitalM.objects.all()
+		users = User.objects.all()
+		return render(request,'account/dashboard.html',{'hospitals':hospitals,'users':users,})
+	elif request.user.is_staff:
+		hospitals = HospitalM.objects.all()
+	else:
+		hospitals = HospitalM.objects.all()
+	context	=	{
+		'hospitals':hospitals,
+	}
+	return render(request,'account/dashboard.html',context)
 
+
+@user_passes_test(lambda u: u.is_superuser, login_url='login')
 def register(request):
 	if request.method == 'POST':
 		form = UserRegistrationForm(request.POST)
@@ -19,7 +35,7 @@ def register(request):
 				form.cleaned_data['password']
 				)
 			new_form.save()
-			return render(request,'accounts/dashboard.html',{'new_user':new_form})
+			return render(request,'account/dashboard.html',{'new_user':new_form})
 	else:
 		form=UserRegistrationForm()
 	return render(request,'registration/register.html',{'form':form})

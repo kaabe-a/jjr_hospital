@@ -1,0 +1,8 @@
+{%extends 'base.html'%}
+{%block content%}
+	<form method="POST" action="{%url 'create'%}">
+		{%csrf_token%}
+		{{form}}
+		<input type="submit" value="create">
+	</form>
+{%endblock%}
