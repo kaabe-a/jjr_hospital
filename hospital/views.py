@@ -40,7 +40,8 @@ def hospital_update_view(request,id):
 	context = {
 		'form':form,
 	}
-	return render(request,'hospital/hospital_create_view.html',context)
+	return render(request,'hospital/hospital_update_view.html',context)
+
 @login_required
 def hospital_detal_view(request,id):
 	hospital = get_object_or_404(HospitalM,id=id)
